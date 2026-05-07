@@ -1,5 +1,6 @@
-export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+export const revalidate = 0;
+export const runtime = "nodejs";
 
 import dbConnect from "../lib/mongodb";
 import Story from "../models/Story";
@@ -8,11 +9,13 @@ async function getStories() {
   try {
     await dbConnect();
 
-    const stories = await Story.find({ published: true }).lean();
+    const stories = await Story.find({
+      published: true,
+    }).lean();
 
     return JSON.parse(JSON.stringify(stories));
   } catch (error) {
-    console.error(error);
+    console.error("Mongo Error:", error);
     return [];
   }
 }

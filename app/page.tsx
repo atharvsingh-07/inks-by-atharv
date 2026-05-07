@@ -1,12 +1,19 @@
 import dbConnect from "../lib/mongodb";
 import Story from "../models/Story";
 
+export const dynamic = "force-dynamic";
+
 async function getStories() {
-  await dbConnect();
+  try {
+    await dbConnect();
 
-  const stories = await Story.find({ published: true });
+    const stories = await Story.find({ published: true }).lean();
 
-  return stories;
+    return JSON.parse(JSON.stringify(stories));
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
 }
 
 export default async function Home() {
@@ -21,7 +28,7 @@ export default async function Home() {
       <div className="space-y-6">
         {stories.map((story: any) => (
           <div
-            key={story._id.toString()}
+            key={story._id}
             className="border border-white/10 p-6 rounded-2xl"
           >
             <h2 className="text-3xl font-bold">

@@ -1,7 +1,8 @@
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
 import dbConnect from "../lib/mongodb";
 import Story from "../models/Story";
-
-export const dynamic = "force-dynamic";
 
 async function getStories() {
   try {

@@ -1,4 +1,6 @@
 "use client";
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 import { motion } from "framer-motion";
 

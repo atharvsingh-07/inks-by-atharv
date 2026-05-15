@@ -1,8 +1,9 @@
 import "./globals.css";
+import { ThemeProvider } from "@/components/themeprovider";
 
 export const metadata = {
-  title: "Inks by Atharv",
-  description: "Digital universe of stories and articles",
+  title: "TaxWise — AI Tax Advisor for Indian Startups",
+  description: "Instant GST, income tax and TDS guidance for Indian startups",
 };
 
 export default function RootLayout({
@@ -11,8 +12,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <body>
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   );
 }
